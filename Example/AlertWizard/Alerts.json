@@ -1,0 +1,11 @@
+{
+    "1" : {
+        "reason" : "TestAlert, but this JSON field is for your convenience and not used by the lib",
+        "title" : "Test alert title",
+        "message" : "Test alert message",
+        "cancel_title" : "Custom cancel title",
+        "action_titles" : ["Action title 1", "Action title 2", "Action title 3"],
+        "text_fields" : ["Field 1", "Field 2"],
+        "destructive_title" : "Destructive title"
+    }
+}

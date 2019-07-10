@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlertWizard
 
 class ViewController: UIViewController {
 
@@ -15,10 +16,29 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    //
+    // MARK: - Actions
+    //
+    @IBAction func alertButtonAction() {
+        AlertHelper.displayAlertController(forReason: AlertCodes.TestAlert.rawValue, delegate: self)
     }
 
+}
+
+extension ViewController: AlertDisplayerDelegate {
+    
+    func didUseAction(atIndex index: Int, alertDisplayer displayer: AlertDisplayer, reason: Int) {
+        print("action at index ", index)
+        print("text field content: ", displayer.textFields?.first?.text ?? "none")
+    }
+    
+    func didUseCancelActionOfAlert(withReason reason: Int) {
+        print("cancel action")
+    }
+    
+    func didUseDestructiveActionOfAlert(withReason reason: Int) {
+        print("destructive action")
+    }
+    
 }
 

@@ -1,22 +1,23 @@
 {
   "name": "AlertWizard",
   "version": "0.1.0",
-  "summary": "A short description of AlertWizard.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/LVeecode/AlertWizard",
+  "summary": "AlertWizard provides centralized control and structure to alert messages. Use the default UIAlertController, or create your own custom ones",
+  "description": "AlertWizard provides centralized control and structure to alert messages. It uses UIAlertController in a way intended by Apple, while providing compact and transparent methods that are easy to use, as well as framework for managing your own alert messages in an elegant way. You can create your own fully custom alert controllers implementing AlertDisplayer protocol, and have them displayed via AlertWizard. Store all your alert messages, headers, buttons, ect in an easily localizable .json file.",
+  "homepage": "https://github.com/lveecode/AlertWizard",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "LVeecode": "lveecode@gmail.com"
+    "Lesya V": ""
   },
   "source": {
-    "git": "https://github.com/LVeecode/AlertWizard.git",
+    "git": "https://github.com/lveecode/AlertWizard.git",
     "tag": "0.1.0"
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "11.0"
   },
-  "source_files": "AlertWizard/Classes/**/*"
+  "source_files": "AlertWizard/Classes/**/*",
+  "frameworks": "UIKit"
 }

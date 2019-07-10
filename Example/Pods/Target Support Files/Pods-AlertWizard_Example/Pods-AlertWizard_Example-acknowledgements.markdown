@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## AlertWizard
 
-Copyright (c) 2019 LVeecode <lveecode@gmail.com>
+Copyright (c) 2019 Lesya V <lveecode@gmail.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
