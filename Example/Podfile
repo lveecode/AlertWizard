@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'AlertWizard_Example' do
+  pod 'AlertWizard', :path => '../'
+
+  target 'AlertWizard_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

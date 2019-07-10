@@ -1,0 +1,16 @@
+PODS:
+  - AlertWizard (0.1.0)
+
+DEPENDENCIES:
+  - AlertWizard (from `../`)
+
+EXTERNAL SOURCES:
+  AlertWizard:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  AlertWizard: 699dcff87ce45fd5d8d706d67a973cc36a90ea4e
+
+PODFILE CHECKSUM: 5de8cbad078f33e7e067e750abd33808ff7de0af
+
+COCOAPODS: 1.7.4

@@ -1,0 +1,6 @@
+framework module AlertWizard {
+  umbrella header "AlertWizard-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "AlertWizard",
+  "version": "0.1.0",
+  "summary": "A short description of AlertWizard.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/LVeecode/AlertWizard",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "LVeecode": "lveecode@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/LVeecode/AlertWizard.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "AlertWizard/Classes/**/*"
+}
