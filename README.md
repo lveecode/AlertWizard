@@ -2,6 +2,8 @@
 [![Version](https://img.shields.io/cocoapods/v/AlertWizard.svg?style=flat)](http://cocoapods.org/pods/AlertWizard)
 [![License](https://img.shields.io/cocoapods/l/AlertWizard.svg?style=flat)](http://cocoapods.org/pods/AlertWizard)
 [![Platform](https://img.shields.io/cocoapods/p/AlertWizard.svg?style=flat)](http://cocoadocs.org/docsets/AlertWizard)
+[![Platform](https://img.shields.io/badge/Swift-5-brightgreen.svg?style=flat)](http://cocoapods.org/pods/AlertWizard)
+
 
 ## Overview
 
