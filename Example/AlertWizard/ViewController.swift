@@ -20,7 +20,7 @@ class ViewController: UIViewController {
     // MARK: - Actions
     //
     @IBAction func alertButtonAction() {
-        AlertHelper.displayAlertController(forReason: AlertCodes.TestAlert.rawValue, delegate: self)
+        AlertWizard.displayAlertController(forReason: AlertCodes.TestAlert.rawValue, delegate: self)
     }
 
 }

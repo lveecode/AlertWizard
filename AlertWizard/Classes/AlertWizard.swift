@@ -98,7 +98,7 @@ import UIKit
  *      }
  *  }
  */
-@objc public class AlertHelper: NSObject {
+@objc public class AlertWizard: NSObject {
     
     //
     // MARK: - Customization
@@ -173,7 +173,7 @@ import UIKit
     // MARK: - Private
     //
     
-    private static let shared = AlertHelper()
+    private static let shared = AlertWizard()
     private var showingAlert: Bool = false
     
     private func displayAlertController(forReason reason: Int,
@@ -205,7 +205,7 @@ import UIKit
         showingAlert = true
         
         // Parsing alert contents
-        let messageDict = AlertHelper.alertDictionaryFromJSON(forReason: reason)
+        let messageDict = AlertWizard.alertDictionaryFromJSON(forReason: reason)
         var title: String? = messageDict["title"] as? String
         var message: String? = messageDict["message"] as? String
         let actionTitles: [String] = (messageDict["action_titles"] as? [String]) ?? []
@@ -286,7 +286,7 @@ import UIKit
     static func alertDictionaryFromJSON(forReason reason: Int) -> Dictionary<String, Any> {
         
         if shared.pathToAlertsFile == nil { return [:] }
-        let jsonDictionary: Dictionary<String, Any> = objectFromJSONFile(atPath: AlertHelper.shared.pathToAlertsFile!) as! Dictionary<String, Any>
+        let jsonDictionary: Dictionary<String, Any> = objectFromJSONFile(atPath: self.shared.pathToAlertsFile!) as! Dictionary<String, Any>
         
         let reasonString = String(format: "%d", reason)
         return jsonDictionary[reasonString] as! Dictionary<String, Any>

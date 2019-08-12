@@ -7,6 +7,9 @@
 #
 
 Pod::Spec.new do |s|
+
+s.swift_version = '5'
+
 s.name             = 'AlertWizard'
 s.version          = '0.1.0'
 s.summary          = 'AlertWizard provides centralized control and structure to alert messages. Use the default UIAlertController, or create your own custom ones'
