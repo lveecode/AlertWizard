@@ -106,6 +106,9 @@ import UIKit
     
     ///  Set tint color of alert controller window so button's text color is customized.
     @objc public var tintColor: UIColor? = nil
+    @objc public static func setButtonColor(_ color: UIColor) {
+        shared.tintColor = color
+    }
     
     /// Enable or disable full screen blur when the alert is displayed.
     @objc public var blurEnabled: Bool = false
@@ -213,7 +216,7 @@ import UIKit
         let destrTitle: String = (messageDict["destructive_title"] as? String) ?? ""
         let textFieldPlaceholders: [String] = (messageDict["text_fields"] as? [String]) ?? []
         if cancelTitle.count == 0 {
-            cancelTitle = "Ok"
+            cancelTitle = NSLocalizedString("Ok", comment: "alert closing button")
         }
         
         // If provided arguments for title formatted string of body formatted string, adding them
