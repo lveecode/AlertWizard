@@ -176,8 +176,8 @@ import UIKit
     // MARK: - Private
     //
     
-    private static let shared = AlertWizard()
-    private var showingAlert: Bool = false
+    @objc public static let shared = AlertWizard()
+    @objc open var showingAlert: Bool = false
     
     private func displayAlertController(forReason reason: Int,
                                                                 titleArguments: [String]? = nil,
