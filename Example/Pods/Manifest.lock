@@ -1,5 +1,5 @@
 PODS:
-  - AlertWizard (0.1.0)
+  - AlertWizard (0.1.4)
 
 DEPENDENCIES:
   - AlertWizard (from `../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  AlertWizard: 7744df0f9ad127a45b0f2eaaea70da3f5f7e7c3f
+  AlertWizard: 1fd65de3d6e6a21eb51e415d9bdab3bc1897f464
 
 PODFILE CHECKSUM: 5de8cbad078f33e7e067e750abd33808ff7de0af
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.10.0

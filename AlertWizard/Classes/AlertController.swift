@@ -8,14 +8,14 @@
 
 import UIKit
 
-class AlertController: UIAlertController, AlertDisplayer {
+public class AlertController: UIAlertController, AlertDisplayer {
     
     var alertWindow: UIWindow? = nil
     var tintColor: UIColor? = nil
     var statusBarHidden: Bool = false
     var statusBarStyle: UIStatusBarStyle = .default
     
-    override func viewWillDisappear(_ animated: Bool) {
+    public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
         // Adding fade-out
@@ -24,7 +24,7 @@ class AlertController: UIAlertController, AlertDisplayer {
         }
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    public override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         // Precaution to ensure window gets destroyed
@@ -32,7 +32,7 @@ class AlertController: UIAlertController, AlertDisplayer {
         alertWindow = nil
     }
     
-    func show(animated: Bool, blur: Bool) {
+    public func show(animated: Bool, blur: Bool) {
         
         // Save topmost controller's status bar style
         
@@ -112,19 +112,19 @@ class AlertController: UIAlertController, AlertDisplayer {
         }
     }
     
-    func hide(animated: Bool) {
+    public func hide(animated: Bool) {
         // Alert controller is hidden automatically
     }
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
+    public override var preferredStatusBarStyle: UIStatusBarStyle {
         return statusBarStyle
     }
     
-    override var prefersStatusBarHidden: Bool {
+    public override var prefersStatusBarHidden: Bool {
         return statusBarHidden
     }
     
-    static func create(withTitle title: String?,
+    public static func create(withTitle title: String?,
                        message: String?,
                        buttonCount: Int,
                        textFieldPlaceholders: [String],
@@ -150,7 +150,7 @@ class AlertController: UIAlertController, AlertDisplayer {
         return alertController
     }
 
-    func add(buttonActionDicts: [NSDictionary],
+    public func add(buttonActionDicts: [NSDictionary],
              cancelActionDict: NSDictionary,
              destructiveActionDict: NSDictionary) {
         
