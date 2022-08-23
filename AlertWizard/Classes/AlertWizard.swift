@@ -170,6 +170,27 @@ import UIKit
                                             bodyArguments: bodyArguments,
                                             delegate: delegate)
     }
+    
+    @objc @discardableResult public static
+    func displayAlertController(forReason reason: Int,
+                                                                       title: String? = nil,
+                                                                       message: String? = nil,
+                                                                       actionTitles: [String]? = nil,
+                                                                       cancelTitle: String? = nil,
+                                                                       destrTitle: String? = nil,
+                                                                       textFieldPlaceholders: [String]? = nil,
+                                                                       delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+        
+        return shared.displayAlertDisplayer(ofClass: AlertController.self,
+                                             reason: reason,
+                                             title: title,
+                                             message: message,
+                                             actionTitles: actionTitles,
+                                             cancelTitle: cancelTitle,
+                                             destrTitle: destrTitle,
+                                             textFieldPlaceholders: textFieldPlaceholders,
+                                             delegate: delegate)
+    }
 
 
     //
@@ -198,15 +219,6 @@ import UIKit
                                                                titleArguments: [String]? = nil,
                                                                bodyArguments: [String]? = nil,
                                                                delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
-        
-        weak var weakDelegate = delegate
-        
-        // If already displaying alert - not displaying new one
-        if (showingAlert) {
-            return nil
-        }
-        showingAlert = true
-        
         // Parsing alert contents
         let messageDict = AlertWizard.alertDictionaryFromJSON(forReason: reason)
         var title: String? = messageDict["title"] as? String
@@ -238,6 +250,39 @@ import UIKit
             title = nil
         }
         
+        return displayAlertDisplayer(ofClass: aClass,
+                                     reason: reason,
+                                     title: title,
+                                     message: message,
+                                     actionTitles: actionTitles,
+                                     cancelTitle: cancelTitle,
+                                     destrTitle: destrTitle,
+                                     textFieldPlaceholders: textFieldPlaceholders,
+                                     delegate: delegate)
+    }
+    
+    private func displayAlertDisplayer(ofClass aClass: AlertDisplayer.Type,
+                                       reason: Int,
+                                       title: String? = nil,
+                                       message: String? = nil,
+                                       actionTitles: [String]? = nil,
+                                       cancelTitle: String? = nil,
+                                       destrTitle: String? = nil,
+                                       textFieldPlaceholders: [String]? = nil,
+                                       delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+        
+        let actionTitles: [String] = actionTitles ?? []
+        let cancelTitle: String = cancelTitle ?? ""
+        let textFieldPlaceholders: [String] = textFieldPlaceholders ?? []
+        
+        weak var weakDelegate = delegate
+        
+        // If already displaying alert - not displaying new one
+        if (showingAlert) {
+            return nil
+        }
+        showingAlert = true
+        
         let displayer = aClass.create(withTitle: title,
                                       message: message,
                                       buttonCount: actionTitles.count,
@@ -266,7 +311,8 @@ import UIKit
         }
         
         var destrDict: [String: Any] = [:]
-        if destrTitle.count > 0 {
+        if let destrTitle = destrTitle,
+           destrTitle.count > 0 {
             let destrBlock: ()->Void = { [weak self] in
                 displayer.hide(animated: true)
                 

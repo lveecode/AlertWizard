@@ -20,7 +20,8 @@ class ViewController: UIViewController {
     // MARK: - Actions
     //
     @IBAction func alertButtonAction() {
-        AlertWizard.displayAlertController(forReason: AlertCodes.TestAlert.rawValue, delegate: self)
+        AlertWizard.displayAlertController(forReason: 0, title: "Test title", message: "Test message", actionTitles: ["test1", "test2"], cancelTitle: "test cancel", destrTitle: "test destr", textFieldPlaceholders: ["place1", "place2"], delegate: self)
+        //AlertWizard.displayAlertController(forReason: AlertCodes.TestAlert.rawValue, delegate: self)
     }
 
 }
