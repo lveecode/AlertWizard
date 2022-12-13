@@ -67,6 +67,10 @@ public class AlertController: UIAlertController, AlertDisplayer {
         let rootNavController = UINavigationController()
         rootNavController.navigationBar.barStyle = statusBarStyle == .default ? UIBarStyle.default : UIBarStyle.black
         rootNavController.isNavigationBarHidden = true
+        rootNavController.navigationBar.isTranslucent = false
+        if #available(iOS 13.0, *) {
+            rootNavController.overrideUserInterfaceStyle = self.statusBarStyle == .default ? .light : .dark
+        }
         
         alertWindow?.rootViewController = rootNavController
         
