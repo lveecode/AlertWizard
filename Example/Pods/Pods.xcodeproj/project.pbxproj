@@ -39,25 +39,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0188393205A61F354505AAB784FEBD76 /* Pods_AlertWizard_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlertWizard_Example.framework; path = "Pods-AlertWizard_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0188393205A61F354505AAB784FEBD76 /* Pods_AlertWizard_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertWizard_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		02456A5B40618ACDEE3BE6F406F75CF0 /* Pods-AlertWizard_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertWizard_Example-umbrella.h"; sourceTree = "<group>"; };
 		03B6A8D0029E541C16378EDB002B05A8 /* AlertWizard.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AlertWizard.modulemap; sourceTree = "<group>"; };
 		0FEB949A4BB25FA0526B1F78CB2C79C0 /* Pods-AlertWizard_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertWizard_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		12D6F55C88DC3EE28F00D90D35CE9E35 /* AlertWizard-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AlertWizard-umbrella.h"; sourceTree = "<group>"; };
-		1B4A482647EA45A4E072688E2D51358E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		1B4A482647EA45A4E072688E2D51358E /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		20CCC4428945569471DD97F8FE184538 /* Pods-AlertWizard_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AlertWizard_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		22A32898EE6C2965811115548D158EDE /* Pods-AlertWizard_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertWizard_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		23C1431F7B14D889EBE7BD3F3299D520 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		23C1431F7B14D889EBE7BD3F3299D520 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		2FECDD45D0B518275F7C2000E0C0BEEE /* Pods-AlertWizard_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertWizard_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		37AD4AB381E65605A877017016D59DB5 /* Pods-AlertWizard_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertWizard_Tests-Info.plist"; sourceTree = "<group>"; };
-		3C49C132581B4AE5BE3829B19AE2367A /* Pods_AlertWizard_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AlertWizard_Tests.framework; path = "Pods-AlertWizard_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5FCA0ABA6BA82872B7E797DEF2AD9190 /* AlertWizard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AlertWizard.framework; path = AlertWizard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C49C132581B4AE5BE3829B19AE2367A /* Pods_AlertWizard_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlertWizard_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5FCA0ABA6BA82872B7E797DEF2AD9190 /* AlertWizard.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AlertWizard.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		72733259F20128BE13BADE999DEB98C0 /* Pods-AlertWizard_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AlertWizard_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		7AB0A37BF62EEB79404443939441494C /* AlertWizard.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertWizard.swift; path = AlertWizard/Classes/AlertWizard.swift; sourceTree = "<group>"; };
-		7CD0821FCD49F77659113E54C16531F5 /* AlertWizard.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AlertWizard.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7CD0821FCD49F77659113E54C16531F5 /* AlertWizard.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = AlertWizard.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		889FD873B6206C54715103D70A366CF4 /* Pods-AlertWizard_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AlertWizard_Tests-umbrella.h"; sourceTree = "<group>"; };
 		8F54F5A6CA2FBE5BACF80BA7E4AB8325 /* AlertController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AlertController.swift; path = AlertWizard/Classes/AlertController.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9F6A55D574FB1CD8B3304CAAF1ED60BE /* Pods-AlertWizard_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AlertWizard_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9F8691C76F00ADC72A8CE9EBF3D0E50F /* Pods-AlertWizard_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AlertWizard_Example-frameworks.sh"; sourceTree = "<group>"; };
 		A7F490CC9C707B98ED04D324D8FF2AA7 /* AlertWizard-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AlertWizard-dummy.m"; sourceTree = "<group>"; };
@@ -431,7 +431,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AlertWizard/AlertWizard-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AlertWizard/AlertWizard-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AlertWizard/AlertWizard.modulemap";
 				PRODUCT_MODULE_NAME = AlertWizard;
@@ -567,7 +567,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AlertWizard/AlertWizard-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AlertWizard/AlertWizard-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/AlertWizard/AlertWizard.modulemap";
 				PRODUCT_MODULE_NAME = AlertWizard;
@@ -638,8 +638,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

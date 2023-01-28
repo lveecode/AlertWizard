@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 s.swift_version = '5'
 
 s.name             = 'AlertWizard'
-s.version          = '0.1.6'
+s.version          = '0.1.7'
 s.summary          = 'AlertWizard provides centralized control and structure to alert messages. Use the default UIAlertController, or create your own custom ones'
 
 # This description is used to generate tags and improve search results.
@@ -31,7 +31,7 @@ s.author           = { 'Lesya V' => '' }
 s.source           = { :git => 'https://github.com/lveecode/AlertWizard.git', :tag => s.version.to_s }
 # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-s.ios.deployment_target = '11.0'
+s.ios.deployment_target = '13.0'
 
 s.source_files = 'AlertWizard/Classes/**/*'
 

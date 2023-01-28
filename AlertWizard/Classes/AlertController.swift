@@ -33,45 +33,39 @@ public class AlertController: UIAlertController, AlertDisplayer {
     }
     
     public func show(animated: Bool, blur: Bool) {
-        
         // Save topmost controller's status bar style
+        let filteredArray = UIApplication.shared.windows.filter { window in
+            window.isKeyWindow
+        }
+        guard let mainWindow: UIWindow = filteredArray.first else { return }
         
-        let mainWindow: UIWindow = UIApplication.shared.keyWindow!
+        var responsibleController: UIViewController? = mainWindow.rootViewController?.presentedViewController ?? mainWindow.rootViewController
         
-        var responsibleController: UIViewController? = mainWindow.rootViewController?.presentedViewController != nil ? mainWindow.rootViewController?.presentedViewController : mainWindow.rootViewController
-        
-        if responsibleController?.isKind(of: UITabBarController.self) ?? false {
-            
-            responsibleController = (responsibleController as! UITabBarController).selectedViewController
+        if let responsibleTabController = responsibleController as? UITabBarController {
+            responsibleController = responsibleTabController.selectedViewController
         }
         
-        if responsibleController?.isKind(of: UINavigationController.self) ?? false {
-            
-            let responsibleNavController = responsibleController as! UINavigationController
-            
-            if responsibleNavController.isNavigationBarHidden ||
-                responsibleNavController.navigationBar.isTranslucent {
-                
-                responsibleController = responsibleNavController.topViewController
-            }
+        if let responsibleNavController = responsibleController as? UINavigationController,
+                  (!responsibleNavController.isNavigationBarHidden &&
+                   !responsibleNavController.navigationBar.isTranslucent) {
+            responsibleController = responsibleNavController.topViewController
         }
         
-        if responsibleController == nil { responsibleController = UIViewController() }
+        statusBarStyle = responsibleController?.preferredStatusBarStyle ?? .default
+        statusBarHidden = responsibleController?.prefersStatusBarHidden ?? false
         
-        statusBarStyle = responsibleController!.preferredStatusBarStyle
-        statusBarHidden = responsibleController!.prefersStatusBarHidden
-        
-        alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        DispatchQueue.main.sync { [weak self] in
+            self?.alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        }
         
         // Force status bar to have particular style via UINavigationController
         let rootNavController = UINavigationController()
         rootNavController.navigationBar.barStyle = statusBarStyle == .default ? UIBarStyle.default : UIBarStyle.black
-        rootNavController.isNavigationBarHidden = true
         rootNavController.navigationBar.isTranslucent = false
+        rootNavController.isNavigationBarHidden = true
         if #available(iOS 13.0, *) {
             rootNavController.overrideUserInterfaceStyle = self.statusBarStyle == .default ? .light : .dark
         }
-        
         alertWindow?.rootViewController = rootNavController
         
         // We inherit the main window's tintColor
