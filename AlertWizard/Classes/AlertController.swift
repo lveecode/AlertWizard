@@ -54,9 +54,7 @@ public class AlertController: UIAlertController, AlertDisplayer {
         statusBarStyle = responsibleController?.preferredStatusBarStyle ?? .default
         statusBarHidden = responsibleController?.prefersStatusBarHidden ?? false
         
-        DispatchQueue.main.sync { [weak self] in
-            self?.alertWindow = UIWindow(frame: UIScreen.main.bounds)
-        }
+        alertWindow = UIWindow(frame: UIScreen.main.bounds)
         
         // Force status bar to have particular style via UINavigationController
         let rootNavController = UINavigationController()
