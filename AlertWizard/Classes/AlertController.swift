@@ -55,6 +55,7 @@ public class AlertController: UIAlertController, AlertDisplayer {
         statusBarHidden = responsibleController?.prefersStatusBarHidden ?? false
         
         alertWindow = UIWindow(frame: UIScreen.main.bounds)
+        alertWindow?.accessibilityViewIsModal = true
         
         // Force status bar to have particular style via UINavigationController
         let rootNavController = UINavigationController()
