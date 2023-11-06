@@ -345,7 +345,7 @@ import UIKit
         
         // Parsing JSON file into array/dict
         let data: Data? = NSData.init(contentsOfFile: path) as Data?
-        if data == nil { return [] }
+        if data == nil { return [] as [Any] }
         
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0))
@@ -353,7 +353,7 @@ import UIKit
         }
         catch let error as NSError {
             print("Found an error - \(error)")
-            return []
+            return [] as [Any]
         }
     }
 }
