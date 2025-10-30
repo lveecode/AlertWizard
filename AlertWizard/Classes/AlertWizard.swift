@@ -131,16 +131,18 @@ import UIKit
     ///   - bodyArguments: Arguments for formatted string in alert body.
     ///   - delegate: Delegate, if any.
     /// - Returns: Alert controller object that will be shown.
-    @objc @discardableResult public static func displayAlertController(forReason reason: Int,
-                                                                titleArguments: [String]? = nil,
-                                                                bodyArguments: [String]? = nil,
-                                                                delegate: AlertDisplayerDelegate? = nil) -> UIAlertController? {
-        
-        return shared.displayAlertController(forReason: reason,
-                                             titleArguments: titleArguments,
-                                             bodyArguments: bodyArguments,
-                                             delegate: delegate)
-    }
+    @objc @discardableResult public static func displayAlertController(
+        forReason reason: Int,
+        titleArguments: [String]? = nil,
+        bodyArguments: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil) -> UIAlertController? {
+            
+            return shared.displayAlertController(
+                forReason: reason,
+                titleArguments: titleArguments,
+                bodyArguments: bodyArguments,
+                delegate: delegate)
+        }
     
     //
     // MARK: - Custom alert displayer summoning
@@ -158,41 +160,44 @@ import UIKit
     ///   - bodyArguments: Arguments for formatted string in alert body.
     ///   - delegate: Delegate, if any
     /// - Returns: Alert displayer object that will be shown.
-    @objc @discardableResult public static func displayAlertDisplayer(ofClass aClass: AlertDisplayer.Type,
-                                                               reason: Int,
-                                                               titleArguments: [String]? = nil,
-                                                               bodyArguments: [String]? = nil,
-                                                               delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
-
-        return shared.displayAlertDisplayer(ofClass: aClass,
-                                            reason: reason,
-                                            titleArguments: titleArguments,
-                                            bodyArguments: bodyArguments,
-                                            delegate: delegate)
-    }
+    @objc @discardableResult public static func displayAlertDisplayer(
+        ofClass aClass: AlertDisplayer.Type,
+        reason: Int,
+        titleArguments: [String]? = nil,
+        bodyArguments: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+            
+            return shared.displayAlertDisplayer(
+                ofClass: aClass,
+                reason: reason,
+                titleArguments: titleArguments,
+                bodyArguments: bodyArguments,
+                delegate: delegate)
+        }
     
-    @objc @discardableResult public static
-    func displayAlertController(forReason reason: Int,
-                                                                       title: String? = nil,
-                                                                       message: String? = nil,
-                                                                       actionTitles: [String]? = nil,
-                                                                       cancelTitle: String? = nil,
-                                                                       destrTitle: String? = nil,
-                                                                       textFieldPlaceholders: [String]? = nil,
-                                                                       delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
-        
-        return shared.displayAlertDisplayer(ofClass: AlertController.self,
-                                             reason: reason,
-                                             title: title,
-                                             message: message,
-                                             actionTitles: actionTitles,
-                                             cancelTitle: cancelTitle,
-                                             destrTitle: destrTitle,
-                                             textFieldPlaceholders: textFieldPlaceholders,
-                                             delegate: delegate)
-    }
-
-
+    @objc @discardableResult public static func displayAlertController(
+        forReason reason: Int,
+        title: String? = nil,
+        message: String? = nil,
+        actionTitles: [String]? = nil,
+        cancelTitle: String? = nil,
+        destrTitle: String? = nil,
+        textFieldPlaceholders: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+            
+            return shared.displayAlertDisplayer(
+                ofClass: AlertController.self,
+                reason: reason,
+                title: title,
+                message: message,
+                actionTitles: actionTitles,
+                cancelTitle: cancelTitle,
+                destrTitle: destrTitle,
+                textFieldPlaceholders: textFieldPlaceholders,
+                delegate: delegate)
+        }
+    
+    
     //
     // MARK: - Private
     //
@@ -200,66 +205,70 @@ import UIKit
     @objc public static let shared = AlertWizard()
     @objc open var showingAlert: Bool = false
     
-    private func displayAlertController(forReason reason: Int,
-                                                                titleArguments: [String]? = nil,
-                                                                bodyArguments: [String]? = nil,
-                                                                delegate: AlertDisplayerDelegate? = nil) -> UIAlertController? {
-        
-        // Returning alert controller, so that view controller
-        // can access it and text fields in it, in particular
-        return displayAlertDisplayer(ofClass: AlertController.self,
-                                     reason: reason,
-                                     titleArguments: titleArguments,
-                                     bodyArguments: bodyArguments,
-                                     delegate: delegate) as? UIAlertController
-    }
+    private func displayAlertController(
+        forReason reason: Int,
+        titleArguments: [String]? = nil,
+        bodyArguments: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil) -> UIAlertController? {
+            
+            // Returning alert controller, so that view controller
+            // can access it and text fields in it, in particular
+            return displayAlertDisplayer(ofClass: AlertController.self,
+                                         reason: reason,
+                                         titleArguments: titleArguments,
+                                         bodyArguments: bodyArguments,
+                                         delegate: delegate) as? UIAlertController
+        }
     
-    private func displayAlertDisplayer(ofClass aClass: AlertDisplayer.Type,
-                                                               reason: Int,
-                                                               titleArguments: [String]? = nil,
-                                                               bodyArguments: [String]? = nil,
-                                                               delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
-        // Parsing alert contents
-        let messageDict = AlertWizard.alertDictionaryFromJSON(forReason: reason)
-        var title: String? = messageDict["title"] as? String
-        var message: String? = messageDict["message"] as? String
-        let actionTitles: [String] = (messageDict["action_titles"] as? [String]) ?? []
-        var cancelTitle: String = (messageDict["cancel_title"] as? String) ?? ""
-        let destrTitle: String = (messageDict["destructive_title"] as? String) ?? ""
-        let textFieldPlaceholders: [String] = (messageDict["text_fields"] as? [String]) ?? []
-        if cancelTitle.count == 0 {
-            cancelTitle = NSLocalizedString("Ok", comment: "alert closing button")
+    private func displayAlertDisplayer(
+        ofClass aClass: AlertDisplayer.Type,
+        reason: Int,
+        titleArguments: [String]? = nil,
+        bodyArguments: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+            // Parsing alert contents
+            let messageDict = AlertWizard.alertDictionaryFromJSON(forReason: reason)
+            var title: String? = messageDict["title"] as? String
+            var message: String? = messageDict["message"] as? String
+            let actionTitles: [String] = (messageDict["action_titles"] as? [String]) ?? []
+            var cancelTitle: String = (messageDict["cancel_title"] as? String) ?? ""
+            let destrTitle: String = (messageDict["destructive_title"] as? String) ?? ""
+            let textFieldPlaceholders: [String] = (messageDict["text_fields"] as? [String]) ?? []
+            if cancelTitle.count == 0 {
+                cancelTitle = NSLocalizedString("Ok", comment: "alert closing button")
+            }
+            
+            // If provided arguments for title formatted string of body formatted string, adding them
+            if let titleArguments = titleArguments,
+               titleArguments.count > 0 {
+                let a = titleArguments + ["x","x","x","x","x","x","x","x","x","x"]
+                title = String(format: title ?? "", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10])
+            }
+            if let bodyArguments = bodyArguments,
+                bodyArguments.count > 0 {
+                let a = bodyArguments + ["x","x","x","x","x","x","x","x","x","x"]
+                message = String(format: message ?? "", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10])
+            }
+            
+            // If body or title are absent, hide them
+            // so no empty lines show up
+            if (message?.count == 0) {
+                message = nil
+            }
+            if (title?.count == 0) {
+                title = nil
+            }
+            
+            return displayAlertDisplayer(ofClass: aClass,
+                                         reason: reason,
+                                         title: title,
+                                         message: message,
+                                         actionTitles: actionTitles,
+                                         cancelTitle: cancelTitle,
+                                         destrTitle: destrTitle,
+                                         textFieldPlaceholders: textFieldPlaceholders,
+                                         delegate: delegate)
         }
-        
-        // If provided arguments for title formatted string of body formatted string, adding them
-        if titleArguments?.count ?? 0 > 0 {
-            let a = titleArguments! + ["x","x","x","x","x","x","x","x","x","x"]
-            title = String(format: title ?? "", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10])
-        }
-        if bodyArguments?.count ?? 0 > 0 {
-            let a = bodyArguments! + ["x","x","x","x","x","x","x","x","x","x"]
-            message = String(format: message ?? "", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10])
-        }
-        
-        // If body or title are absent, hide them so no empty
-        // lines show up
-        if (message?.count == 0) {
-            message = nil
-        }
-        if (title?.count == 0) {
-            title = nil
-        }
-        
-        return displayAlertDisplayer(ofClass: aClass,
-                                     reason: reason,
-                                     title: title,
-                                     message: message,
-                                     actionTitles: actionTitles,
-                                     cancelTitle: cancelTitle,
-                                     destrTitle: destrTitle,
-                                     textFieldPlaceholders: textFieldPlaceholders,
-                                     delegate: delegate)
-    }
     
     private func displayAlertDisplayer(ofClass aClass: AlertDisplayer.Type,
                                        reason: Int,
@@ -278,9 +287,7 @@ import UIKit
         weak var weakDelegate = delegate
         
         // If already displaying alert - not displaying new one
-        if (showingAlert) {
-            return nil
-        }
+        if (showingAlert) { return nil }
         showingAlert = true
         
         let displayer = aClass.create(withTitle: title,
@@ -334,21 +341,26 @@ import UIKit
     
     static func alertDictionaryFromJSON(forReason reason: Int) -> Dictionary<String, Any> {
         
-        if shared.pathToAlertsFile == nil { return [:] }
-        let jsonDictionary: Dictionary<String, Any> = objectFromJSONFile(atPath: self.shared.pathToAlertsFile!) as! Dictionary<String, Any>
+        guard let path = shared.pathToAlertsFile,
+              let jsonDictionary: Dictionary<String, Any> = objectFromJSONFile(atPath: path) as? Dictionary<String, Any>
+        else { return [:] }
         
         let reasonString = String(format: "%d", reason)
-        return jsonDictionary[reasonString] as! Dictionary<String, Any>
+        if let dict = jsonDictionary[reasonString] as? Dictionary<String, Any> {
+            return dict
+        } else {
+            return [:]
+        }
     }
     
     static func objectFromJSONFile(atPath path: String) -> Any {
         
         // Parsing JSON file into array/dict
-        let data: Data? = NSData.init(contentsOfFile: path) as Data?
-        if data == nil { return [] as [Any] }
+        guard let data = NSData.init(contentsOfFile: path) as Data?
+        else { return [] as [Any] }
         
         do {
-            let jsonObject = try JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions(rawValue: 0))
+            let jsonObject = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions(rawValue: 0))
             return jsonObject
         }
         catch let error as NSError {

@@ -37,7 +37,19 @@ public class AlertController: UIAlertController, AlertDisplayer {
         let filteredArray = UIApplication.shared.windows.filter { window in
             window.isKeyWindow
         }
-        guard let mainWindow: UIWindow = filteredArray.first else { return }
+        var mainWindow: UIWindow? = filteredArray.first
+        var scene: UIWindowScene? = nil
+        
+        // If the app is using UIWindowScene lifecycle
+        if let windowScene = UIApplication.shared.connectedScenes
+            .compactMap({ $0 as? UIWindowScene })
+            .first(where: { $0.activationState == .foregroundActive }),
+           let topWindow = windowScene.windows.last {
+            mainWindow = topWindow
+            scene = windowScene
+        }
+        
+        guard let mainWindow = mainWindow else { return }
         
         var responsibleController: UIViewController? = mainWindow.rootViewController?.presentedViewController ?? mainWindow.rootViewController
         
@@ -46,8 +58,8 @@ public class AlertController: UIAlertController, AlertDisplayer {
         }
         
         if let responsibleNavController = responsibleController as? UINavigationController,
-                  (!responsibleNavController.isNavigationBarHidden &&
-                   !responsibleNavController.navigationBar.isTranslucent) {
+           (!responsibleNavController.isNavigationBarHidden &&
+            !responsibleNavController.navigationBar.isTranslucent) {
             responsibleController = responsibleNavController.topViewController
         }
         
@@ -62,16 +74,13 @@ public class AlertController: UIAlertController, AlertDisplayer {
         rootNavController.navigationBar.barStyle = statusBarStyle == .default ? UIBarStyle.default : UIBarStyle.black
         rootNavController.navigationBar.isTranslucent = false
         rootNavController.isNavigationBarHidden = true
-        if #available(iOS 13.0, *) {
-            rootNavController.overrideUserInterfaceStyle = self.statusBarStyle == .default ? .light : .dark
-        }
+        rootNavController.overrideUserInterfaceStyle = self.statusBarStyle == .default ? .light : .dark
         alertWindow?.rootViewController = rootNavController
         
         // We inherit the main window's tintColor
-        alertWindow?.tintColor = UIApplication.shared.delegate?.window??.tintColor
+        alertWindow?.tintColor = mainWindow.tintColor
         // Window level is above the top window (this makes the alert, if it's a sheet, show over the keyboard)
-        let topWindow = UIApplication.shared.windows.last
-        alertWindow?.windowLevel = topWindow?.windowLevel ?? UIWindow.Level.alert + 1
+        alertWindow?.windowLevel = mainWindow.windowLevel + 1
         
         if blur {
             // Create blur effect
@@ -82,6 +91,7 @@ public class AlertController: UIAlertController, AlertDisplayer {
             alertWindow?.addSubview(visualEffectView)
         }
         
+        alertWindow?.windowScene = scene
         alertWindow?.makeKeyAndVisible()
         
         // Animate fade in
@@ -103,7 +113,7 @@ public class AlertController: UIAlertController, AlertDisplayer {
         
         alertWindow?.rootViewController?.present(self, animated: animated, completion: nil)
         
-        // Customize buttons tint color after presenting, or it won't work
+        // Customize buttons tint color *after* presenting, or it won't work
         if tintColor != nil {
             alertWindow?.tintColor = tintColor
         }
@@ -113,24 +123,21 @@ public class AlertController: UIAlertController, AlertDisplayer {
         // Alert controller is hidden automatically
     }
     
-    public override var preferredStatusBarStyle: UIStatusBarStyle {
-        return statusBarStyle
-    }
-    
-    public override var prefersStatusBarHidden: Bool {
-        return statusBarHidden
-    }
+    public override var preferredStatusBarStyle: UIStatusBarStyle { statusBarStyle }
+    public override var prefersStatusBarHidden: Bool { statusBarHidden }
     
     public static func create(withTitle title: String?,
-                       message: String?,
-                       buttonCount: Int,
-                       textFieldPlaceholders: [String],
-                       tintColor: UIColor?) -> AlertDisplayer {
+                              message: String?,
+                              buttonCount: Int,
+                              textFieldPlaceholders: [String],
+                              tintColor: UIColor?) -> AlertDisplayer {
         
-        // If more than 2 buttons - action sheet
-        let alertController = AlertController.init(title: title,
-                                                   message: message,
-                                                   preferredStyle: (buttonCount > 1 && textFieldPlaceholders.count == 0) ? .actionSheet : .alert)
+        // If more than 2 buttons (including cancel button) and no text fields - action sheet
+        let sheet = (buttonCount > 1 && textFieldPlaceholders.count == 0)
+        let alertController =
+        AlertController.init(title: title,
+                             message: message,
+                             preferredStyle: sheet ? .actionSheet : .alert)
         
         // Custom tint color, if any
         if tintColor != nil {
@@ -146,13 +153,13 @@ public class AlertController: UIAlertController, AlertDisplayer {
         
         return alertController
     }
-
+    
     public func add(buttonActionDicts: [NSDictionary],
-             cancelActionDict: NSDictionary,
-             destructiveActionDict: NSDictionary) {
+                    cancelActionDict: NSDictionary,
+                    destructiveActionDict: NSDictionary) {
         
         // Cancel action
-        let cancelTitle: String = cancelActionDict.allKeys.first as? String ?? "Ok"
+        let cancelTitle = cancelActionDict.allKeys.first as? String ?? "Ok"
         let cancelBlock: (()->Void)? = cancelActionDict.allValues.first as? (()->Void)
         
         let cancelAction = UIAlertAction.init(title: cancelTitle,
@@ -163,7 +170,7 @@ public class AlertController: UIAlertController, AlertDisplayer {
         
         // Action buttons, if any
         for actionDict in buttonActionDicts {
-            let actionTitle: String = actionDict.allKeys.first as! String
+            let actionTitle = actionDict.allKeys.first as? String
             let actionBlock: (()->Void)? = actionDict.allValues.first as? (()->Void)
             
             let action = UIAlertAction.init(title: actionTitle, style: .default) { (action) in
@@ -174,12 +181,12 @@ public class AlertController: UIAlertController, AlertDisplayer {
         
         // Destructive action, if any
         if destructiveActionDict.count > 0 {
-            let destructiveTitle: String = destructiveActionDict.allKeys.first as! String
+            let destructiveTitle = destructiveActionDict.allKeys.first as? String
             let destrBlock: (()->Void)? = destructiveActionDict.allValues.first as? ()->Void
             
             let destrAction = UIAlertAction.init(title: destructiveTitle,
                                                  style: .destructive) { (action) in
-                                                    destrBlock?()
+                destrBlock?()
             }
             addAction(destrAction)
         }
