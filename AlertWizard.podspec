@@ -11,7 +11,7 @@ Pod::Spec.new do |s|
 s.swift_version = '5'
 
 s.name             = 'AlertWizard'
-s.version          = '0.1.10'
+s.version          = '0.1.11'
 s.summary          = 'AlertWizard provides centralized control and structure to alert messages. Use the default UIAlertController, or create your own custom ones'
 
 # This description is used to generate tags and improve search results.
@@ -40,7 +40,7 @@ s.source_files = 'AlertWizard/Classes/**/*'
 # }
 
 # s.public_header_files = 'Pod/Classes/**/*.h'
-s.frameworks = 'UIKit'
+s.frameworks = ['UIKit', 'Foundation', 'CoreFoundation']
 # s.dependency 'AFNetworking', '~> 2.3'
 # s.default_subspec = 'Core'
 

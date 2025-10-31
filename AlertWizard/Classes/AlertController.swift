@@ -32,7 +32,7 @@ public class AlertController: UIAlertController, AlertDisplayer {
         alertWindow = nil
     }
     
-    public func show(animated: Bool, blur: Bool) {
+    public func show(animated: Bool, blur: Bool, originRect: CGRect? = nil) {
         // Save topmost controller's status bar style
         let filteredArray = UIApplication.shared.windows.filter { window in
             window.isKeyWindow
@@ -102,9 +102,9 @@ public class AlertController: UIAlertController, AlertDisplayer {
         
         // Needed for iPad presentation, will present from the bottom center of the screen
         popoverPresentationController?.sourceView = alertWindow?.rootViewController?.view
-        popoverPresentationController?.sourceRect = CGRect(
-            x: alertWindow?.rootViewController?.view.bounds.size.width ?? 0 / 2,
-            y: alertWindow?.rootViewController?.view.bounds.size.height ?? 0,
+        popoverPresentationController?.sourceRect = originRect ?? CGRect(
+            x: UIScreen.main.bounds.size.width / 2,
+            y: UIScreen.main.bounds.size.height / 2,
             width: 1,
             height: 1)
         

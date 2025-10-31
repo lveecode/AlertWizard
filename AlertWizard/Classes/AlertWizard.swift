@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import CoreFoundation
+import Foundation
 
 /// Displayer protocol for custom alert controllers.
 @objc public protocol AlertDisplayer {
@@ -45,6 +47,7 @@ import UIKit
     ///   - animated: Flag to animate the transition.
     ///   - blur: Flag to blur the background.
     @objc func show(animated: Bool, blur: Bool)
+    @objc func show(animated: Bool, blur: Bool, originRect: CGRect)
     
     
     /// Hide the alert
@@ -197,6 +200,30 @@ import UIKit
                 delegate: delegate)
         }
     
+    @objc @discardableResult public static func displayAlertController(
+        forReason reason: Int,
+        title: String? = nil,
+        message: String? = nil,
+        actionTitles: [String]? = nil,
+        cancelTitle: String? = nil,
+        destrTitle: String? = nil,
+        textFieldPlaceholders: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil,
+        originRect: CGRect = CGRectZero) -> AlertDisplayer? {
+            
+            return shared.displayAlertDisplayer(
+                ofClass: AlertController.self,
+                reason: reason,
+                title: title,
+                message: message,
+                actionTitles: actionTitles,
+                cancelTitle: cancelTitle,
+                destrTitle: destrTitle,
+                textFieldPlaceholders: textFieldPlaceholders,
+                delegate: delegate,
+                originRect: originRect)
+        }
+    
     
     //
     // MARK: - Private
@@ -245,7 +272,7 @@ import UIKit
                 title = String(format: title ?? "", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10])
             }
             if let bodyArguments = bodyArguments,
-                bodyArguments.count > 0 {
+               bodyArguments.count > 0 {
                 let a = bodyArguments + ["x","x","x","x","x","x","x","x","x","x"]
                 message = String(format: message ?? "", a[0], a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[10])
             }
@@ -278,7 +305,8 @@ import UIKit
                                        cancelTitle: String? = nil,
                                        destrTitle: String? = nil,
                                        textFieldPlaceholders: [String]? = nil,
-                                       delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+                                       delegate: AlertDisplayerDelegate? = nil,
+                                       originRect: CGRect = CGRectZero) -> AlertDisplayer? {
         
         let actionTitles: [String] = actionTitles ?? []
         let cancelTitle: String = cancelTitle ?? ""
@@ -334,7 +362,7 @@ import UIKit
                       cancelActionDict: cancelDict as NSDictionary,
                       destructiveActionDict: destrDict as NSDictionary)
         
-        displayer.show(animated: true, blur: blurEnabled)
+        displayer.show(animated: true, blur: blurEnabled, originRect: originRect)
         
         return displayer
     }
