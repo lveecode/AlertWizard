@@ -147,6 +147,21 @@ import Foundation
                 delegate: delegate)
         }
     
+    @objc @discardableResult public static func displayAlertController(
+        forReason reason: Int,
+        titleArguments: [String]? = nil,
+        bodyArguments: [String]? = nil,
+        delegate: AlertDisplayerDelegate? = nil,
+        originRect: CGRect = CGRectZero) -> UIAlertController? {
+            
+            return shared.displayAlertController(
+                forReason: reason,
+                titleArguments: titleArguments,
+                bodyArguments: bodyArguments,
+                delegate: delegate,
+                originRect: originRect)
+        }
+    
     //
     // MARK: - Custom alert displayer summoning
     //
@@ -236,7 +251,8 @@ import Foundation
         forReason reason: Int,
         titleArguments: [String]? = nil,
         bodyArguments: [String]? = nil,
-        delegate: AlertDisplayerDelegate? = nil) -> UIAlertController? {
+        delegate: AlertDisplayerDelegate? = nil,
+        originRect: CGRect? = nil) -> UIAlertController? {
             
             // Returning alert controller, so that view controller
             // can access it and text fields in it, in particular
@@ -244,7 +260,8 @@ import Foundation
                                          reason: reason,
                                          titleArguments: titleArguments,
                                          bodyArguments: bodyArguments,
-                                         delegate: delegate) as? UIAlertController
+                                         delegate: delegate,
+                                         originRect: originRect) as? UIAlertController
         }
     
     private func displayAlertDisplayer(
@@ -252,7 +269,8 @@ import Foundation
         reason: Int,
         titleArguments: [String]? = nil,
         bodyArguments: [String]? = nil,
-        delegate: AlertDisplayerDelegate? = nil) -> AlertDisplayer? {
+        delegate: AlertDisplayerDelegate? = nil,
+        originRect: CGRect? = nil) -> AlertDisplayer? {
             // Parsing alert contents
             let messageDict = AlertWizard.alertDictionaryFromJSON(forReason: reason)
             var title: String? = messageDict["title"] as? String
@@ -294,7 +312,8 @@ import Foundation
                                          cancelTitle: cancelTitle,
                                          destrTitle: destrTitle,
                                          textFieldPlaceholders: textFieldPlaceholders,
-                                         delegate: delegate)
+                                         delegate: delegate,
+                                         originRect: originRect ?? CGRectZero)
         }
     
     private func displayAlertDisplayer(ofClass aClass: AlertDisplayer.Type,

@@ -181,6 +181,9 @@ public class AlertController: UIAlertController, AlertDisplayer {
                 actionBlock?()
             }
             addAction(action)
+            if buttonActionDicts.count == 1 {
+               preferredAction = action
+            }
         }
         
         // Destructive action, if any
